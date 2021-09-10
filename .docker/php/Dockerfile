@@ -6,15 +6,53 @@ RUN set -ex \
         && apk add --update --no-cache --virtual .build-deps \
         ${PHPIZE_DEPS} \
         shadow \
+        build-base \
+        git \
+        libgcrypt \
+        pcre-dev \
+        && apk add --no-cache \
+        libzip-dev \
+        libsodium-dev \
+        libxml2-dev \
+        oniguruma-dev \
+        openssl-dev \
+        curl-dev \
+        icu-dev \
+        zlib-dev \
+        freetype-dev \
+        libjpeg-turbo-dev \
+        imagemagick-dev \
+        libpng-dev \
+        tidyhtml-dev \
         sqlite-dev
 
-RUN pecl install redis
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg
+
+RUN pecl install \
+    imagick \
+    redis
 
 RUN docker-php-ext-install \
+    gd \
+    curl \
+    iconv \
+    tidy \
+    tokenizer \
+    bcmath \
+    pcntl \
+    exif \
+    sodium \
+    zip \
+    xml \
+    intl \
+    mbstring \
     pdo_sqlite \
     pdo_mysql
 
-RUN docker-php-ext-enable redis
+RUN docker-php-ext-enable \
+    imagick \
+    gd \
+    redis
 
 # Clean up
 RUN rm -rf /var/cache/apk/* \

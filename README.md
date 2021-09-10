@@ -1,64 +1,54 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+## About Task Management System
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This basic task management system build as [RESTful API](https://restfulapi.net/) using [Laravel](https://laravel.com) a ([PHP](https://www.php.net/) framework), and uses official and third-party libraries:
 
-## About Laravel
+- [Laravel Sanctum](https://laravel.com/docs/8.x/sanctum) for SPA authentication.
+- [Laravel IDE Helper Generator](https://github.com/barryvdh/laravel-ide-helper) to generate accurate autocompletion.
+- [PHP CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) to enforces everybody is using the same coding standard
+- [Laravel Telescope](https://laravel.com/docs/8.x/telescope) provides insight into the requests coming into your application, exceptions, log entries, database queries, queued jobs, mail, notifications, cache operations, scheduled tasks, variable dumps, and more.
+- [Laravel Enum](https://github.com/BenSampo/laravel-enum) Simple, extensible and powerful enumeration implementation for Laravel.
+- [flysystem aws s3](https://github.com/thephpleague/flysystem-aws-s3-v3) Flysystem Adapter for AWS SDK V3
+- [Predis](https://github.com/predis/predis) A flexible and feature-complete Redis client for PHP.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### PSR2 Coding Standard
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+You can now run the test simply typing
+<pre><code>./vendor/bin/phpcs</code></pre>
+Fixing PHP CodeSniffer has built-in tool that can fix a lot of the style errors, you can fix your code by simply typing
+<pre><code>./vendor/bin/phpcbf</code></pre>
 
-## Learning Laravel
+The test directory is ignore in the `phpcs.xml` since I choose `snake_case` over `CamelCase` in the class methods for readability purpose.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+You can read [here](https://laravel.com/docs/master/contributions#coding-style)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Postman
 
-## Laravel Sponsors
+You can find `Task Management System.postman_collection.json` and `Task Management System.postman_environment.json` in the **docs** directory.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+### Requirements
+Laravel server requirements [here](https://laravel.com/docs/7.x#server-requirements)
+- PHP: `^8.0`
+- PHP extension `php_zip` enabled
+- PHP extension `php_zip` enabled
+- PHP extension `php_xml` enabled
+- PHP extension `php_gd2` enabled
+- PHP extension `php_iconv` enabled
+- PHP extension `php_simplexml` enabled
+- PHP extension `php_xmlreader` enabled
+- PHP extension `php_zlib` enabled
 
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[CMS Max](https://www.cmsmax.com/)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Getting Started
+Clone the repository
+```
+$ git clone https://github.com/markmarilag27/laravel-task-management-api.git
+```
+Install dependencies
+```
+$ composer install
+```
+Run artisan commands
+```
+php artisan migrate:fresh && php artisan db:seed --class=StateSeeder && php artisan db:seed --class=TaskSeeder
+```
+Open your [localhost](http://localhost) environment
