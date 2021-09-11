@@ -26,9 +26,10 @@ class ReOrderTaskController extends Controller
      * Handle the incoming request.
      *
      * @param \Illuminate\Http\Request $request
+     * @return mixed
      * @throws \Throwable
      */
-    public function __invoke(Request $request)
+    public function __invoke(Request $request): mixed
     {
         // Get the validated data from the request
         $payload = $request->validate(['tasks' => 'required|array']);
