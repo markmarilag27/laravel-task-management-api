@@ -32,6 +32,7 @@ class GetAllStateController extends Controller
         /** @var $state */
         $state = State::query()
             ->latest('id')
+            ->hasFiltered()
             ->simplePaginate($request->per_page);
 
         return StateResource::collection($state);
