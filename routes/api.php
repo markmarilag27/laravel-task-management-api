@@ -14,6 +14,7 @@ use App\Http\Controllers\V1\Task\GetAllTrashedTaskController;
 use App\Http\Controllers\V1\Task\ReOrderTaskController;
 use App\Http\Controllers\V1\Task\RestoreTrashedTaskController;
 use App\Http\Controllers\V1\Task\ShowTaskController;
+use App\Http\Controllers\V1\Task\UpdateTaskStateController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -79,6 +80,8 @@ Route::prefix('v1')
                 Route::patch('/', ReOrderTaskController::class)->name('reOrder');
                 // @endpoint /api/v1/tasks/restore
                 Route::post('restore', RestoreTrashedTaskController::class)->name('restore');
+                // @endpoint /api/v1/tasks/state
+                Route::patch('state', UpdateTaskStateController::class)->name('state');
             });
 
         /**
