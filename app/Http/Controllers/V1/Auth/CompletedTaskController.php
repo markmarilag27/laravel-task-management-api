@@ -32,9 +32,12 @@ class CompletedTaskController extends Controller
         /** @var $tasks */
         $tasks = $request->user()
             ->tasks()
+            ->select('created_at')
+            ->whereMonth('created_at', now())
             ->whereRelation('state', 'name', TaskState::COMPLETED)
-            ->count();
+            ->get()
+            ->groupBy(fn ($task) => $task->created_at->format('l'));
 
-        return response()->json(['total_completed' => $tasks]);
+        return response()->json(['data' => $tasks]);
     }
 }
