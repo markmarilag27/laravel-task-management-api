@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\TaskResource;
 use App\Models\Task;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class ShowTaskController extends Controller
 {
@@ -30,8 +31,12 @@ class ShowTaskController extends Controller
      */
     public function __invoke(Request $request, Task $task): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
-        /** @var $userId */
-        $userId = $request->user()->id;
+        /** @var $user */
+        $user = $request->user();
+
+        if ($user->cannot('view', $task)) {
+            abort(Response::HTTP_NOT_FOUND);
+        }
 
         /** @var $tasks */
         $tasks = Task::query()
@@ -44,7 +49,7 @@ class ShowTaskController extends Controller
                 'created_at'
             ])
             ->hasFiltered()
-            ->belongsToOwnerId($userId)
+            ->belongsToOwnerId($user->id)
             ->belongsToTaskId($task->id)
             ->withCount('subTasks')
             ->with('state')
